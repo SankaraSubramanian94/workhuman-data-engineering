@@ -1,34 +1,5 @@
-# Web framework
-fastapi==0.85.1
-uvicorn==0.20.0
-gunicorn==20.1.0
-
-# Database
-sqlalchemy==1.4.39
-psycopg2-binary==2.9.3
-
-# AI and NLP
-sentence-transformers==2.2.2
-langchain==0.0.77
-
-# Data processing
-pandas==1.4.3
-numpy==1.21.6
-
-# AWS integration (if needed)
-boto3==1.24.19
-
-# Testing
-pytest==7.1.2
-pytest-asyncio==0.18.3
-
-# Additional utilities
-requests==2.28.1
-pydantic==1.9.1
-
-# For local development and linting
-black==22.6.0
-flake8==4.0.1
-
-# Chunking strategy
-transformers==4.20.1
+fastapi
+uvicorn
+sentence-transformers
+pinecone-client
+pdfplumber

@@ -1,54 +1,28 @@
-# Tech Support AI Chatbot
+# Data Pipeline
 
 ## Overview
-This project implements a data pipeline for a RAG-based AI chatbot designed to provide technical support for customers of a tech company specializing in consumer electronics. The pipeline processes text documents, chunks them, vectorizes the chunks, and stores them in a vector database.
+The data pipeline components are responsible for processing and managing text data within the FastAPI application. This includes chunking long texts into smaller segments, generating embeddings for the text chunks, and persisting the processed data to a vector database.
 
-## Features
-- Sentence-based chunking of text documents.
-- Vectorization of text chunks using SentenceTransformers.
-- Storage of vectors in Pinecone for efficient retrieval.
+## Components
 
-## Setup
+### chunking.py
+The `chunking.py` module provides functionality for breaking down long texts into smaller chunks and generating embeddings for the chunks.
 
-### Prerequisites
-- AWS account
-- Python 3.11+
-- Docker
-- Pinecone API key
+- **`chunk_text(text, chunk_size=512)`:** Function to split a long text into smaller chunks based on a specified maximum size. It aggregates sentences into chunks to ensure manageable segment sizes.
 
-### Installation
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/SankaraSubramanian94/workhuman-data-engineering.git
-    cd tech-support-chatbot
-    ```
+- **`embed_text(text)`:** Function to generate embeddings for text chunks using a pre-trained SentenceTransformer model. Embeddings capture semantic meaning and are useful for downstream analysis.
 
-2. Install dependencies:
-    ```sh
-    pip install -r requirements.txt
-    ```
+### persist.py
+The `persist.py` module handles the persistence of processed data to a vector database (e.g., Pinecone). It provides functions for saving text chunks and their embeddings to the database.
 
-3. Set up AWS services (S3, Lambda, SQS, etc.)
+- **`save_chunks(document_id, chunks, embeddings)`:** Function to save text chunks and their corresponding embeddings to the vector database. It creates an index for storing the data and uses Pinecone's API for data storage and retrieval.
 
-### Running the Pipeline
-1. Upload a document to S3.
-2. The ingestion Lambda function triggers and sends the document content to SQS.
-3. The processing Lambda function processes the SQS message, chunks the text, vectorizes the chunks, and stores them in Pinecone.
+### process_input.py
+The `process_input.py` script serves as an entry point for processing input text data. It reads input from a file, processes the text using the chunking and embedding functions, and persists the processed data to the vector database.
 
-### Testing
-1. Run unit tests:
-    ```sh
-    python -m unittest discover
-    ```
+- **Usage:** `python process_input.py --document_id <document_id> --file_path <file_path>`
 
-## Deployment
-1. Use AWS CodePipeline for CI/CD.
-2. Deploy Lambdas and other services using AWS CloudFormation or Terraform.
-
-## Design Decisions
-- **Sentence-Based Chunking:** Chosen to maintain context and coherence.
-- **SentenceTransformers:** Used for effective vectorization of text chunks.
-- **Pinecone:** Selected for efficient vector storage and similarity search.
-
-## License
-[MIT](LICENSE)
+## Setup and Usage
+1. **Environment Setup**: Ensure Python and necessary dependencies are installed (`requirements.txt`).
+2. **Configuration**: Set up environment variables for database connection details and API keys (e.g., Pinecone API key).
+3. **Run Process Input Script**: Use the `process_input.py` script to process input text data and persist it to the vector database.
