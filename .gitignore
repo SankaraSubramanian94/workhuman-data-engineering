@@ -6,7 +6,7 @@ __pycache__/
 *.exe
 *.bat
 *.ps1
-workhuman/
+*workhuman/*
 
 # C extensions
 *.so
