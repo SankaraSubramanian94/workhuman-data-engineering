@@ -3,7 +3,7 @@ import os
 from pinecone import Pinecone, ServerlessSpec
 
 def save_chunks(document_id, chunks, embeddings):
-    PINECONE_API_KEY = os.getenv('3362760c-268d-4659-aabb-dc5a03db589d')
+    PINECONE_API_KEY = os.getenv('API-KEY')
     pc = Pinecone(api_key=PINECONE_API_KEY)
 
     index_name = 'document-chunks'

@@ -35,7 +35,7 @@ ENV/
 env/
 .venv/
 input_files/samsung_repair_guide_sample.pdf
-workhuman/*
+workhuman
 # pip environment
 pip-log.txt
 pip-delete-this-directory.txt
@@ -142,6 +142,3 @@ cython_debug/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-
-# Local test
-test_*.py
