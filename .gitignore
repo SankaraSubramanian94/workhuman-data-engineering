@@ -6,6 +6,7 @@ __pycache__/
 *.exe
 *.bat
 *.ps1
+workhuman/
 
 # C extensions
 *.so
@@ -35,7 +36,7 @@ ENV/
 env/
 .venv/
 input_files/samsung_repair_guide_sample.pdf
-workhuman
+
 # pip environment
 pip-log.txt
 pip-delete-this-directory.txt
